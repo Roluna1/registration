@@ -6,7 +6,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
-<title>User Registration Form</title>
+<title>Registration Form</title>
 <style>
   body {
     font-family: "Madimi One", sans-serif;
@@ -110,14 +110,14 @@
         </div>
         <div class="form-group">
             <label for="student-id">Student ID</label>
-            <input type="number" id="student-id" name="student-id" required>
+            <input type="text" id="student-id" name="student-id" required>
         </div>
         <div class="form-group">
             <label for="address">Address</label>
             <input type="text" id="address" name="address" required>
         </div>
         <div class="form-group">
-            <input type="submit" value="submit" id="submit" required>
+            <input type="submit" value="Submit" id="submit" required>
         </div>
     </form>
 </div>
@@ -136,6 +136,7 @@ const firebaseConfig = {
   measurementId: "G-MN4BR38BRM"
 };
 
+
 const app = initializeApp(firebaseConfig);
 
 const db = getDatabase(app);
@@ -146,14 +147,14 @@ document.querySelector("form").addEventListener('submit', function(e){
  if (this.checkValidity()) {
      set(ref(db, 'user/' + document.getElementById("first-name").value),
      {
-       FirstName: document.getElementById("first-name").value,
-       MiddleName: document.getElementById("middle-name").value,
-       LastName: document.getElementById("last-name").value,
-       Age: document.getElementById("age").value,
-       Birthdate: document.getElementById("birthdate").value,
-       LRN: document.getElementById("lrn").value,
-       StudentID: document.getElementById("student-id").value,
-       Address: document.getElementById("address").value
+       "01-FirstName": "01" + document.getElementById('first-name').value,
+       "02-MiddleName": document.getElementById("middle-name").value,
+       "03-LastName": document.getElementById("last-name").value,
+       "04-Age": document.getElementById("age").value,
+       "05-Birthdate": document.getElementById("birthdate").value,
+       "06-LRN": document.getElementById("lrn").value,
+       "07-StudentID": document.getElementById("student-id").value,
+       "08-Address": document.getElementById("address").value
      });
      alert("Done!");
      this.reset();

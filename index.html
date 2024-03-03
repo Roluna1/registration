@@ -147,7 +147,7 @@ document.querySelector("form").addEventListener('submit', function(e){
  if (this.checkValidity()) {
      set(ref(db, 'user/' + document.getElementById("first-name").value),
      {
-       "01-FirstName": "01" + document.getElementById('first-name').value,
+       "01-FirstName": document.getElementById('first-name').value,
        "02-MiddleName": document.getElementById("middle-name").value,
        "03-LastName": document.getElementById("last-name").value,
        "04-Age": document.getElementById("age").value,

@@ -88,7 +88,6 @@
             <label for="first-name">First name</label>
             <input type="text" id="first-name" name="first-name" required>
         </div>
-        <!-- Add required attribute to all necessary input fields -->
         <div class="form-group">
             <label for="middle-name">Middle name</label>
             <input type="text" id="middle-name" name="middle-name" required>
@@ -118,7 +117,6 @@
             <input type="text" id="address" name="address" required>
         </div>
         <div class="form-group">
-            <!-- Add required attribute to the submit button -->
             <input type="submit" value="submit" id="submit" required>
         </div>
     </form>
@@ -157,7 +155,7 @@ document.querySelector("form").addEventListener('submit', function(e){
        StudentID: document.getElementById("student-id").value,
        Address: document.getElementById("address").value
      });
-     alert("Login Successful!");
+     alert("Done!");
      this.reset();
     } else {
      alert("Please fill in all required fields.");

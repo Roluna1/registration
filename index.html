@@ -3,73 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
 <title>User Registration Form</title>
 <style>
   body {
-    font-family: Arial, sans-serif;
+    font-family: "Madimi One", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #252526;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
     max-width: 500px;
-    margin: 50px auto;
-    background-color: #fff;
+    background-color: #3e3e42;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-radius: 50px;
   }
-
+  h2{
+    color: white;
+    text-align: center;
+  }
   .form-group {
     margin-bottom: 20px;
   }
-
   .form-group label {
+    height: 100%;
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: white;
+    font-weight: 200;
   }
 
   .form-group input {
     width: calc(100% - 22px);
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #d4c0c0;
     border-radius: 3px;
+    font-size: 15px;
+    font-family: "Madimi One", sans-serif;
   }
 
   .form-group input[type="submit"] {
     background-color: #007bff;
-    color: #fff;
+    color: #ffffff;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    width: 100%;
+    border: none;
+    margin-top: 20px;
+    
   }
 
   .form-group input[type="submit"]:hover {
     background-color: #0056b3;
   }
+  @media screen and (max-height: 655px) {
+    body{
+      height: 129vh;
+    }
+  }
 </style>
 </head>
 <body>
   <div class="container">
-    <h2>User Registration Form</h2>
-    <form action="#" method="post">
-      <div class="form-group">
-        <label for="fullname">Full Name</label>
-        <input type="text" id="fullname" name="fullname" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="date" id="password" name="password" required>
-      </div>
-      <div class="form-group">
-        <input type="submit" value="Register">
-      </div>
+    <h2>Registration</h2>
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="first-name">First name</label>
+            <input type="text" id="first-name" name="first-name" required>
+        </div>
+        <!-- Add required attribute to all necessary input fields -->
+        <div class="form-group">
+            <label for="middle-name">Middle name</label>
+            <input type="text" id="middle-name" name="middle-name" required>
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last name</label>
+            <input type="text" id="last-name" name="last-name" required>
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+        <div class="form-group">
+            <label for="birthdate">Birthdate</label>
+            <input type="date" id="birthdate" name="birthdate" required>
+        </div>
+        <div class="form-group">
+            <label for="lrn">LRN</label>
+            <input type="number" id="lrn" name="lrn" required>
+        </div>
+        <div class="form-group">
+            <label for="student-id">Student ID</label>
+            <input type="number" id="student-id" name="student-id" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" required>
+        </div>
+        <div class="form-group">
+            <!-- Add required attribute to the submit button -->
+            <input type="submit" value="submit" id="submit" required>
+        </div>
     </form>
-  </div>
+</div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCvoY3YT4Fu5wexP54g2BPicS79Vn4VSSk",
+  authDomain: "roluna-1.firebaseapp.com",
+  databaseURL: "https://roluna-1-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "roluna-1",
+  storageBucket: "roluna-1.appspot.com",
+  messagingSenderId: "694885216808",
+  appId: "1:694885216808:web:a2ca66a0e38789f96afb1d",
+  measurementId: "G-MN4BR38BRM"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
+
+document.querySelector("form").addEventListener('submit', function(e){
+ e.preventDefault();
+
+ if (this.checkValidity()) {
+     set(ref(db, 'user/' + document.getElementById("first-name").value),
+     {
+       FirstName: document.getElementById("first-name").value,
+       MiddleName: document.getElementById("middle-name").value,
+       LastName: document.getElementById("last-name").value,
+       Age: document.getElementById("age").value,
+       Birthdate: document.getElementById("birthdate").value,
+       LRN: document.getElementById("lrn").value,
+       StudentID: document.getElementById("student-id").value,
+       Address: document.getElementById("address").value
+     });
+     alert("Login Successful!");
+     this.reset();
+    } else {
+     alert("Please fill in all required fields.");
+ }
+});
+</script>
+  </script>
+
 </body>
 </html>
